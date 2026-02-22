@@ -17,6 +17,7 @@ function App() {
   };
 
   const handleAdd = async () => {
+     
     if (!title) return alert("Please enter a task");
     await addTask(title);
     setTitle("");
@@ -43,7 +44,7 @@ function App() {
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Enter task"
         />
-        <button type="submit">Add</button>
+        <button type="submit" >Add</button>
       </form>
       <TaskList tasks={tasks} onDelete={handleDelete} />
     </div>
