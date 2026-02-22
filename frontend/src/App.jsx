@@ -11,23 +11,35 @@ function App() {
     loadTasks();
   }, []);
 
-  const loadTasks = async () => {
+const loadTasks = async () => {
+  try {
     const res = await getTasks();
     setTasks(res.data);
-  };
+  } catch (error) {
+    console.error("Error loading tasks:", error);
+  }
+};
 
-  const handleAdd = async () => {
-     
-    if (!title) return alert("Please enter a task");
+const handleAdd = async () => {
+  if (!title.trim()) return alert("Please enter a task");
+
+  try {
     await addTask(title);
     setTitle("");
     loadTasks();
-  };
+  } catch (error) {
+    console.error("Error adding task:", error);
+  }
+};
 
-  const handleDelete = async (id) => {
+const handleDelete = async (id) => {
+  try {
     await deleteTask(id);
     loadTasks();
-  };
+  } catch (error) {
+    console.error("Error deleting task:", error);
+  }
+};
 
   return (
     <div style={{ padding: "2rem" }}>
